@@ -18,15 +18,17 @@ var Queue = function() {
     var del = storage[beg];
     delete storage[beg];
     beg++;
-    count --;
-    if (count < 0) {
-      count = 0;
-    }
+    // count --;
+    
     return del;
   };
   
   someInstance.size = function() {
-    return count;
+    var size = count - beg;
+    if (size < 0) {
+      size = 0;
+    }
+    return size;
   };
 
   return someInstance;
@@ -34,7 +36,7 @@ var Queue = function() {
 
 var q = Queue();
 q.enqueue('a');
-q.enqueue('b');
+console.log(q.enqueue('b'));
 console.log(q.dequeue());
 console.log(q.enqueue('c'));
-console.log(q); //to.equal('b');
+console.log(q.dequeue()); //to.equal('b');
